@@ -50,12 +50,18 @@ class MessageController extends AbstractController
     /**
      * @Route("/message/edit/{id}", name="messageEdit", methods={"PATCH"})
      */
-    public function edit(Message $message, Request $request, SerializerInterface $serializer): Response
+    public function edit(Message $message, Request $request, SerializerInterface $serializer, EntityManagerInterface $manager): Response
     {
         $data = $request->getContent();
         $messageEdit = $serializer->deserialize($data, Message::class, 'json');
 
-        return $this->json($messageEdit);
+        $message->setTitle($messageEdit->getTitle());
+        $message->setContent($messageEdit->getContent());
+
+        $manager->remove($messageEdit);
+        $manager->flush();
+
+        return $this->json($message);
 
     }
 
