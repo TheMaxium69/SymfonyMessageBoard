@@ -8,7 +8,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @method string getUserIdentifier()
  */
 class User implements UserInterface
 {
@@ -60,7 +59,7 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        // TODO: Implement getRoles() method.
+        return ["ROLE_USER"];
     }
 
     public function getSalt()
@@ -76,5 +75,11 @@ class User implements UserInterface
     public function __call($name, $arguments)
     {
         // TODO: Implement @method string getUserIdentifier()
+    }
+
+
+    public function getUserIdentifier(): string
+    {
+        return $this->username;
     }
 }

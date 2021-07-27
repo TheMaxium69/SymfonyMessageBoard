@@ -14,13 +14,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/login", name="login", methods={"POST"})
+     * @Route("/login", name="login")
      */
-    public function login(Request $request): Response
+    public function login(): Response
     {
-        $user = $request->getUser();
-
-        return $this->json($user);
+        return $this->render("user/index.html.twig");
     }
 
     /**
@@ -45,6 +43,5 @@ class UserController extends AbstractController
      */
     public function logout(): Response
     {
-       $this->redirectToRoute("login");
     }
 }
