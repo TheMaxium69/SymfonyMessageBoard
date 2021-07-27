@@ -14,7 +14,7 @@ class UserController extends AbstractController
     public function index(): Response
     {
         return $this->json([
-            'controller_name' => 'MessageController',
+            'controller_name' => 'UserController',
         ]);
     }
 }
