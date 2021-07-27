@@ -20,7 +20,6 @@ security:
             provider: users_in_database
 
             json_login:
-                login_path: login
                 check_path: login
 
             logout:
