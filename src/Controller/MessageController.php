@@ -46,4 +46,17 @@ class MessageController extends AbstractController
 
         return $this->json("OK", 200, []);
     }
+
+    /**
+     * @Route("/message/edit/{id}", name="messageEdit", methods={"PATCH"})
+     */
+    public function edit(Message $message, Request $request, SerializerInterface $serializer): Response
+    {
+        $data = $request->getContent();
+        $messageEdit = $serializer->deserialize($data, Message::class, 'json');
+
+        return $this->json($messageEdit);
+
+    }
+
 }
